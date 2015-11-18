@@ -1,13 +1,15 @@
-# Version 1.2
+FROM phusion/baseimage
 
-FROM abh1nav/python
+MAINTAINER Andrey Kaygorodov <andreykaygorodov@gmail.com>
 
-MAINTAINER Abhinav Ajgaonkar <abhinav316@gmail.com>
+RUN apt-get update && apt-get install -y \
+  python \
+  wget
 
 # Download and extract OpsCenter
 RUN \
   mkdir /opt/opscenter; \
-  wget -O - http://downloads.datastax.com/community/opscenter-5.1.0.tar.gz \
+  wget -O - http://downloads.datastax.com/community/opscenter-5.2.2.tar.gz \
   | tar xzf - --strip-components=1 -C "/opt/opscenter";
 
 ADD	. /src
